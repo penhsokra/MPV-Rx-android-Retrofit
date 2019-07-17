@@ -32,19 +32,17 @@ public class NewsInteractor implements NewsMVP.Interactor{
                 .subscribeWith(new DisposableSubscriber<SourcesArticlesRespone>(){
                     @Override
                     public void onNext(SourcesArticlesRespone sourcesArticlesRespone) {
-                        Log.e("1111","onNext:"+sourcesArticlesRespone.getSourcesArticles());
-                        interactorRespone.onSuccess("Loading Next");
+                        interactorRespone.onSuccess(sourcesArticlesRespone.getSourcesArticles());
                     }
 
                     @Override
                     public void onError(Throwable t) {
-                        Log.e("1111",""+t.toString());
                         interactorRespone.onError("Loading Error");
                     }
 
                     @Override
                     public void onComplete() {
-                        interactorRespone.onSuccess("Loading Success");
+                        interactorRespone.onComplete("completed");
                     }
                 })
             );

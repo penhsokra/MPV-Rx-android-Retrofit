@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camdev.sokra.mvp.mvpretrofitrx_android.adapter.NewsAdapter;
+import camdev.sokra.mvp.mvpretrofitrx_android.model.SourcesArticles;
 import camdev.sokra.mvp.mvpretrofitrx_android.model.respone.SourcesArticlesRespone;
 import camdev.sokra.mvp.mvpretrofitrx_android.ui.news.mvp.NewsMVP;
 import camdev.sokra.mvp.mvpretrofitrx_android.ui.news.mvp.NewsPresenter;
@@ -22,7 +24,7 @@ public class NewsActivity extends AppCompatActivity implements NewsMVP.View{
     NewsPresenter presenter;
     RecyclerView recyclerView;
     NewsAdapter newsAdapter;
-    List<SourcesArticlesRespone> newList = new ArrayList<>();
+    List<SourcesArticles> newList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,9 @@ public class NewsActivity extends AppCompatActivity implements NewsMVP.View{
     }
 
     @Override
-    public void reqestDataSuccess(String message) {
-        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+    public void reqestDataSuccess(List<SourcesArticles> articles) {
+        Log.e("activity",""+articles);
+        newsAdapter.addMoreItem(articles);
     }
 
     @Override
