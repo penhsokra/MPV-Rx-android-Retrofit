@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View, Mai
     RecyclerView recyclerView;
     MainAdapter mainAdapter;
     List<Articles> articlesList = new ArrayList<>();
+    DetailFragment detailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View, Mai
         presenter = new MainPresenter();
         presenter.setView(this);
         presenter.onLoadingData();
+        detailFragment =(DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
     }
 
     private void intiUI(){
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View, Mai
 
     @Override
     public void onItemSelected(Articles articles) {
-        Toast.makeText(this, "Call back", Toast.LENGTH_SHORT).show();
+        if(detailFragment!=null){
+            detailFragment.setMessage(articles);
+        }
     }
 }
