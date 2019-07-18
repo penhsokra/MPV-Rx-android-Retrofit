@@ -3,6 +3,7 @@ package camdev.sokra.mvp.mvpretrofitrx_android.model;
 public class Articles {
     private Source source;
     private String author;
+    private String title;
     private String description;
     private String url;
     private String urlToImage;
@@ -11,6 +12,14 @@ public class Articles {
 
     public Source getSource() {
         return source;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setSource(Source source) {
@@ -70,6 +79,7 @@ public class Articles {
         return "Articles{" +
                 "source=" + source +
                 ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +

@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="camdev.sokra.mvp.mvpretrofitrx_android.ui.news.NewsActivity">
+
+        </activity>
+        <activity android:name="camdev.sokra.mvp.mvpretrofitrx_android.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="camdev.sokra.mvp.mvpretrofitrx_android.ui.main.MainActivity">
-
         </activity>
     </application>
 

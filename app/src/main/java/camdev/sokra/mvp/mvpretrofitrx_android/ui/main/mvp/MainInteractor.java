@@ -1,10 +1,7 @@
-package camdev.sokra.mvp.mvpretrofitrx_android.ui.news.mvp;
-
-import android.util.Log;
-import android.widget.Toast;
+package camdev.sokra.mvp.mvpretrofitrx_android.ui.main.mvp;
 
 import camdev.sokra.mvp.mvpretrofitrx_android.auth.AuthServiceGenerator;
-import camdev.sokra.mvp.mvpretrofitrx_android.model.respone.SourcesArticlesRespone;
+import camdev.sokra.mvp.mvpretrofitrx_android.model.respone.ArticlesRespone;
 import camdev.sokra.mvp.mvpretrofitrx_android.service.NewsService;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -12,11 +9,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 
-public class NewsInteractor implements NewsMVP.Interactor{
+public class MainInteractor implements MainMVP.Interactor{
 
     NewsService newsService;
 
-    public NewsInteractor() {
+    public MainInteractor() {
         this.newsService = newsService;
     }
 
@@ -26,14 +23,15 @@ public class NewsInteractor implements NewsMVP.Interactor{
 
         newsService = AuthServiceGenerator.creatService(NewsService.class);
 
-        Flowable<SourcesArticlesRespone> flowable = newsService.getResulSource();
+        Flowable<ArticlesRespone> flowable = newsService.getResultArticle();
             disposable.add(
             flowable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<SourcesArticlesRespone>(){
+                .subscribeWith(new DisposableSubscriber<ArticlesRespone>(){
+
                     @Override
-                    public void onNext(SourcesArticlesRespone sourcesArticlesRespone) {
-                        interactorRespone.onSuccess(sourcesArticlesRespone.getSourcesArticles());
+                    public void onNext(ArticlesRespone articlesRespone) {
+                        interactorRespone.onSuccess(articlesRespone.getArticles());
                     }
 
                     @Override

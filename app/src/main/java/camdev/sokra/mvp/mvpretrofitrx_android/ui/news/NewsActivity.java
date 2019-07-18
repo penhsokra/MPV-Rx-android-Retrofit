@@ -1,7 +1,10 @@
 package camdev.sokra.mvp.mvpretrofitrx_android.ui.news;
 
+import android.provider.CalendarContract;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,7 +44,11 @@ public class NewsActivity extends AppCompatActivity implements NewsMVP.View{
 
     private void intiUI(){
         recyclerView = findViewById(R.id.recyclerNews);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(ContextCompat.getDrawable(this,R.drawable.border_divider_items_list));
+        recyclerView.addItemDecoration(itemDecoration);
         newsAdapter = new NewsAdapter(newList,this);
         recyclerView.setAdapter(newsAdapter);
     }
@@ -58,12 +65,17 @@ public class NewsActivity extends AppCompatActivity implements NewsMVP.View{
 
     @Override
     public void reqestDataSuccess(List<SourcesArticles> articles) {
-        Log.e("activity",""+articles);
         newsAdapter.addMoreItem(articles);
+    }
+
+    @Override
+    public void reqestDataComplet(String message) {
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void reqestDataFail(String message) {
         Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
     }
+
 }

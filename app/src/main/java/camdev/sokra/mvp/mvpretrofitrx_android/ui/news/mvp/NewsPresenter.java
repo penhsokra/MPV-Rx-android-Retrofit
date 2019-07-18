@@ -31,7 +31,7 @@ public class NewsPresenter implements NewsMVP.Presenter{
 
             @Override
             public void onComplete(String message) {
-
+                view.reqestDataComplet(message);
             }
         });
     }

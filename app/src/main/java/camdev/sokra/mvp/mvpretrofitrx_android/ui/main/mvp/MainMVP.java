@@ -1,16 +1,15 @@
-package camdev.sokra.mvp.mvpretrofitrx_android.ui.news.mvp;
+package camdev.sokra.mvp.mvpretrofitrx_android.ui.main.mvp;
 
 import java.util.List;
 
 import camdev.sokra.mvp.mvpretrofitrx_android.model.Articles;
-import camdev.sokra.mvp.mvpretrofitrx_android.model.Source;
-import camdev.sokra.mvp.mvpretrofitrx_android.model.SourcesArticles;
 
-public interface NewsMVP {
+public interface MainMVP {
+
     interface View{
         void onShowLoading();
         void onHideLoading();
-        void reqestDataSuccess(List<SourcesArticles> articles);
+        void reqestDataSuccess(List<Articles> articles);
         void reqestDataComplet(String message);
         void reqestDataFail(String message);
     }
@@ -24,7 +23,7 @@ public interface NewsMVP {
         void onRespone( InteractorRespone interactorRespone);
 
         interface InteractorRespone{
-            void onSuccess(List<SourcesArticles> articles);
+            void onSuccess(List<Articles> articles);
             void onComplete(String message);
             void onError(String message);
         }
